@@ -81,23 +81,8 @@ public abstract class AbstractMysqlSink extends AbstractSink implements Configur
      */
     public abstract void addLogEntity(String content, List<Object> saveLogList);
 
-    /**
-     * 创建 PreparedStatement
-     *
-     * @return
-     * @throws SQLException
-     */
-    public PreparedStatement getPreparedStatement(String sql) throws SQLException {
-        DruidPooledConnection connection = this.dataSource.getConnection();
-        Connection conn = connection.getConnection();
-        conn.setAutoCommit(false);
-        return conn.prepareStatement(sql);
-    }
-
-
     @Override
-    public Status process() throws EventDeliveryException {
-        // System.out.println("==> sink process ");
+    public Status process() {
         Status result = Status.READY;
         Channel channel = getChannel();
         Transaction transaction = channel.getTransaction();
