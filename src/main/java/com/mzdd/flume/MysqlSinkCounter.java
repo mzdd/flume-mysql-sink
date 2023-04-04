@@ -14,8 +14,11 @@ public class MysqlSinkCounter extends SinkCounter implements MysqlSinkMBean {
     private static final String COUNT_ROLLBACK =
             "channel.rollback.count";
 
+    private static final String[] ATTRIBUTES =
+            {COUNT_ROLLBACK, TIMER_MYSQL_EVENT_SEND};
+
     public MysqlSinkCounter(String name) {
-        super(name);
+        super(name, ATTRIBUTES);
     }
 
     public long addToMysqlEventSendTimer(long delta) {
